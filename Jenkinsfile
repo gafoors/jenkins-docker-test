@@ -1,5 +1,5 @@
 node {
-    stage {
+    stage('Run docker') {
         sh 'mvn exec:exec'
     }
 }
