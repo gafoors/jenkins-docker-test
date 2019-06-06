@@ -38,9 +38,10 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <executable>docker-compose</executable>
+                    <executable>docker</executable>
                     <arguments>
-                        <argument>up</argument>
+                        <argument>run</argument>
+                        <argument>hello-world</argument>
                     </arguments>
                 </configuration>
             </plugin>
