@@ -1,0 +1,7 @@
+node('maven') {
+    stages {
+        stage('Run docker') {
+            sh 'mvn exec:exec'
+        }
+    }
+}
