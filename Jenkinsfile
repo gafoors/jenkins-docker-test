@@ -7,7 +7,9 @@ pipeline {
     }
     stages {
         stage('Run docker') {
-            sh 'mvn exec:exec'
+            steps {
+                sh 'mvn exec:exec'
+            }
         }
     }
 }
