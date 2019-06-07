@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'maven'
+        label 'maven-jnlp'
     }
     stages {
         stage('Run docker') {
