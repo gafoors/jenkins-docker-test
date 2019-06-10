@@ -1,0 +1,15 @@
+pipeline {
+    agent {
+        docker {
+            image 'docker'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
+    stages {
+        stage('Run docker') {
+            steps {
+                sh 'docker ps'
+            }
+        }
+    }
+}
