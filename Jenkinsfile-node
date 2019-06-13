@@ -1,4 +1,4 @@
-node('dind-maven-jnlp') {
+node('maven-jnlp') {
     stage('Run docker') {
         sh 'mvn exec:exec'
     }
