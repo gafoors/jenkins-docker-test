@@ -33,7 +33,8 @@ RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${
 
 # Get Jenkins slave jar for JNLP (Java Web Start)
 RUN adduser -D -h $JENKINS_HOME -s /bin/sh jenkins jenkins \
-    && adduser jenkins root \
+    && addgroup docker \
+    && adduser jenkins docker \
     && chmod a+rwx $JENKINS_HOME
 RUN echo "jenkins ALL=(ALL) NOPASSWD: /usr/local/bin/dockerd" > /etc/sudoers.d/00jenkins && chmod 440 /etc/sudoers.d/00jenkins
 RUN echo "jenkins ALL=(ALL) NOPASSWD: /usr/local/bin/docker" > /etc/sudoers.d/01jenkins && chmod 440 /etc/sudoers.d/01jenkins
