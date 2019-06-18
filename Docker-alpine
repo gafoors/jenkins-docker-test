@@ -3,7 +3,7 @@ LABEL MAINTAINER="EDP@worldpay.com"
 
 ENV JENKINS_HOME /home/jenkins
 ENV JENKINS_REMOTING_VERSION=3.29 DOCKER_VERSION=18.09.6
-ENV DOCKER_HOST unix:///var/run/docker.sock
+
 
 RUN apk --update add curl tar openssh git bash openjdk8 sudo \
     # Required for docker-compose
@@ -41,6 +41,10 @@ RUN echo "jenkins ALL=(ALL) NOPASSWD: /usr/local/bin/docker" > /etc/sudoers.d/01
 RUN curl --create-dirs -sSLo /usr/share/jenkins/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JENKINS_REMOTING_VERSION/remoting-$JENKINS_REMOTING_VERSION.jar \
     && chmod 755 /usr/share/jenkins \
     && chmod 644 /usr/share/jenkins/slave.jar
+
+RUN echo "starting dockerd..."
+RUN dockerd --host=unix:///var/run/docker.sock --storage-driver=vfs &
+#RUN chgrp docker /var/run/docker.sock
 
 # Set Entrypoint 
 COPY entrypoint.sh /usr/local/bin/entrypoint

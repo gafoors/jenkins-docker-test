@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
-echo "starting dockerd..."
-sudo dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=vfs &
+
 echo "starting jnlp slave..."
 # if -tunnel is not provided try env vars
 if [[ "$@" != *"-tunnel "* ]]; then
